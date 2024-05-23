@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selección de Asientos y Compra</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="seats-section">
+            <div class="screen">Pantalla</div>
+            <div class="seats-container">
+                <div class="row">
+                    <div class="seat available"></div>
+                    <div class="seat available"></div>
+                    <div class="seat available"></div>
+                    <div class="seat available"></div>
+                    <div class="seat available"></div>
+                </div>
+                <div class="row">
+                    <div class="seat available"></div>
+                    <div class="seat available"></div>
+                    <div class="seat occupied"></div>
+                    <div class="seat available"></div>
+                    <div class="seat available"></div>
+                </div>
+                <div class="row">
+                    <div class="seat available"></div>
+                    <div class="seat selected"></div>
+                    <div class="seat available"></div>
+                    <div class="seat available"></div>
+                    <div class="seat occupied"></div>
+                </div>
+                <div class="row">
+                    <div class="seat available"></div>
+                    <div class="seat available"></div>
+                    <div class="seat available"></div>
+                    <div class="seat available"></div>
+                    <div class="seat available"></div>
+                </div>
+            </div>
+        </div>
+        <div class="crud-section">
+            <h2>Gestión de Compra</h2>
+            <form>
+                <label for="seat-number">Número de Asiento:</label>
+                <input type="text" id="seat-number" name="seat-number" required>
+                
+                <label for="customer-name">Nombre del Cliente:</label>
+                <input type="text" id="customer-name" name="customer-name" required>
+                
+                <label for="customer-email">Email del Cliente:</label>
+                <input type="email" id="customer-email" name="customer-email" required>
+
+                <div class="button-group">
+                    <button type="submit">Comprar</button>
+                    <button type="button">Actualizar</button>
+                    <button type="button">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
