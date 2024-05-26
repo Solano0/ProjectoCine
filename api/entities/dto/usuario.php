@@ -7,7 +7,7 @@ class Usuario extends UsuarioQueries{
     protected $usuario = null;
     protected $contrasena = null;
 
-    
+    protected $estado_usuario = null;
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -46,8 +46,19 @@ class Usuario extends UsuarioQueries{
             return false;
         }
     }
+        
+    public function setEstado($value) {
+        if ($value === true || $value === false) {
+            // Convert boolean to tinyint (0 or 1)
+            $this->estado_usuario = $value ? 1 : 0;
+        } else {
+            throw new InvalidArgumentException("El valor de estado_usuario debe ser un booleano.");
+        }
+    }
 
-    public function getId()
+
+
+        public function getId()
     {
         return $this->id_usuario;
     }
@@ -68,16 +79,10 @@ class Usuario extends UsuarioQueries{
     /*
     *   Método para obtener el valor del correo del usuario
     */
-    public function getCorreo()
+    
+    public function getEstado()
     {
-        return $this->correo_usuario;
-    }
-    /*
-    *   Método para obtener el valor de la codigo de recuperación de un usuario usuario
-    */
-    public function getCodigoRecuperacion()
-    {
-        return $this->codigo_recuperacion;
+        return $this->estado_usuario;
     }
     
 }
