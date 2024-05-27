@@ -14,22 +14,28 @@ document.getElementById("loginButton").addEventListener("click", function() {
 });
 
 // Constante para establecer el formulario de iniciar sesión.
-const SESSION_FORM = document.getElementById('session-form');
+document.getElementById('login-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevenir el envío del formulario estándar
 
+    // Obtener los valores del formulario
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-// Método manejador de eventos para cuando se envía el formulario de iniciar sesión.
-// simple mente se comprueban los datos y se inicia
-SESSION_FORM.addEventListener('submit', async (event) => {
-    // Se evita recargar la página web después de enviar el formulario.
-    event.preventDefault();
-    // Constante tipo objeto con los datos del formulario.
-    const FORM = new FormData(SESSION_FORM);
-    // Petición para determinar si el cliente se encuentra registrado.
-    const JSON = await dataFetch(USER_API, 'login', FORM);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (JSON.status) {
-        sweetAlert(1, JSON.message, true, 'index.html');
-    } else {
-        sweetAlert(2, JSON.exception, false);
-    }
+    // Crear una solicitud AJAX
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/conexion/login.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    // Manejar la respuesta del servidor
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            alert(response.message); // Mostrar la alerta con el mensaje del servidor
+        } else {
+            alert('Error en la solicitud');
+        }
+    };
+
+    // Enviar los datos del formulario al servidor
+    xhr.send(`username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`);
 });
